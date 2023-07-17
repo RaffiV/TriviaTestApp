@@ -1,0 +1,39 @@
+.content-wrapper {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .table-wrapper {
+    max-height: 400px;
+    overflow: auto;
+  }
+
+  td, th {
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  button {
+    margin: 0;
+  }
+  .header {
+    background-color: #8bbdaa;
+  }
+
+  .body-rows {
+    background-color: #d2e1e0;
+    border-bottom: 1px solid lightgrey;
+  }
+
+  .text-align-center {
+    text-align: center;
+  }
+  .text-align-right {
+    text-align: end;
+  }
+
+  .margin-top-20 {
+    margin-top: 20px;
+  }
+}

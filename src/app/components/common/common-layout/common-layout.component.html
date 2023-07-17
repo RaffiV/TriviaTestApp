@@ -1,0 +1,13 @@
+<div class="wrapper" [@fadeInOut]>
+
+  <h2 *ngIf="title">{{title}}</h2>
+
+  <div *ngIf="label" class="difficulty-label" [class]="label" [@fadeInOut]>
+    {{label}}
+  </div>
+
+  <h6 *ngIf="text">{{text}}</h6>
+
+  <ng-content select="[content]"></ng-content>
+
+</div>

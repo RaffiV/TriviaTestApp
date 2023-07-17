@@ -1,0 +1,27 @@
+.wrapper {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .difficulty-label {
+    width: 100px;
+    height: 17px;
+    padding: 10px 0;
+    border-radius: 12px 0 12px 12px;
+    color: white;
+    margin: 0 auto;
+    background-color: grey;
+    transition: 0.5s;
+
+    &.Easy {
+      background-color: #42A976;
+    }
+    &.Medium {
+      background-color: #EAC505;
+    }
+    &.Hard {
+      background-color: #EF7D54;
+    }
+  }
+}

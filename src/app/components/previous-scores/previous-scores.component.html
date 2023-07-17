@@ -1,0 +1,49 @@
+<app-common-layout [title]="'Previous Scores'">
+
+  <ng-container content>
+
+    <div *ngIf="previousScoresList?.length; else NoPrevScores" class="content-wrapper">
+      <div class="table-wrapper">
+        <table>
+          <thead>
+          <tr class="header">
+            <th>Quiz number</th>
+            <th>Category</th>
+            <th>Score</th>
+            <th></th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr class="body-rows" *ngFor="let prevQuiz of previousScoresList; let i = index">
+            <td class="text-align-center">{{i}}</td>
+            <td>{{prevQuiz.category}}</td>
+            <td class="text-align-right">{{prevQuiz.score}}</td>
+            <td>
+              <button
+                class="app-button"
+                (click)="reviewQuiz(prevQuiz)">
+                Review
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button
+        class="app-button margin-top-20"
+        (click)="backToHome()">
+        Back to Home
+      </button>
+    </div>
+
+    <ng-template #NoPrevScores>
+
+      <h6>No Quiz has yet been completed.</h6>
+
+    </ng-template>
+
+  </ng-container>
+
+</app-common-layout>

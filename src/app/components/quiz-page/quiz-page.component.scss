@@ -1,0 +1,25 @@
+.quiz-answers {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  .answer-item {
+    border: 2px solid #8bbdaa;
+    border-radius: 12px;
+    width: 290px;
+    padding: 14px;
+    margin: 20px;
+    font-weight: bold;
+    transition: 0.5s;
+
+    &.incorrect {
+      background-color: #e1d2d2;
+      color: #750000;
+      border: 2px solid #750000;
+    }
+    &:hover, &.correct {
+      border: 0;
+      background-color: #d2e1e0;
+      color: #00754e;
+    }
+  }
+}

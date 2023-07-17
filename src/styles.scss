@@ -1,1 +1,76 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+  background-color: #eff1f7;
+  height: 100%;
+
+  h2 {
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 75px;
+    text-align: center;
+    color: #3A7859;
+    transition: opacity 0.5s ease-in-out;
+  }
+  h6 {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 45px;
+    text-align: center;
+    color: #354153;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .app-button {
+    color: white;
+    background-color: #00754e;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 0 20px;
+    margin: 20px;
+    height: 40px;
+    border: 0;
+    box-shadow: var(--mdc-protected-button-container-elevation, 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12));
+    transition: 0.5s;
+
+    &:disabled {
+      color: grey;
+      background-color: #d2d2d9;
+    }
+
+    &:hover:enabled {
+      background-color: #0b845b;
+      cursor: pointer;
+    }
+  }
+
+  .material-menu {
+    height: 300px;
+    border-radius: 15px;
+    margin-top: 5px;
+    align-items: center;
+
+    .category-option {
+      height: 30px;
+      border-radius: 15px;
+      width: 96%;
+      margin: 0 2%;
+      transition: 0.5s;
+      &:hover {
+        background-color: #eff1f7;
+        color: #3A7859;
+      }
+    }
+  }
+}
+
+body { margin: 0; font-family: Barlow, "Barlow", sans-serif; }
+
+@import '@angular/material/theming';
+@include mat-core();
+
+$my-app-primary: mat-palette($mat-teal, 800);
+$my-app-accent:  mat-palette($mat-yellow, 500, 900, A100);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
+
+@include angular-material-theme($my-app-theme);
+
