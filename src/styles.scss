@@ -64,13 +64,3 @@ html, body {
 }
 
 body { margin: 0; font-family: Barlow, "Barlow", sans-serif; }
-
-@import '@angular/material/theming';
-@include mat-core();
-
-$my-app-primary: mat-palette($mat-teal, 800);
-$my-app-accent:  mat-palette($mat-yellow, 500, 900, A100);
-$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
-
-@include angular-material-theme($my-app-theme);
-
