@@ -17,18 +17,13 @@
     </div>
 
     <div *ngIf="completeQuiz">
-      <button *ngIf="activeTaskIndex > 0" class="app-button" (click)="reviewPrevQuestion()">
-        Previous
-      </button>
-      <button *ngIf="activeTaskIndex < completeQuiz.tasks.length - 1" class="app-button" (click)="reviewNextQuestion()">
-        Next
-      </button>
-      <button class="app-button" (click)="backToPrevScores.emit()">
-        Back To Previous Scores
-      </button>
-      <button class="app-button" (click)="backToHome.emit()">
-        Back To Home
-      </button>
+      <button *ngIf="activeTaskIndex > 0" class="app-button" (click)="reviewPrevQuestion()">Previous</button>
+
+      <button *ngIf="activeTaskIndex < completeQuiz.tasks.length - 1" class="app-button" (click)="reviewNextQuestion()">Next</button>
+
+      <button class="app-button" (click)="backToPrevScores.emit()">Back To Previous Scores</button>
+
+      <button class="app-button" (click)="backToHome.emit()">Back To Home</button>
     </div>
 
     <div>

@@ -1,22 +1,17 @@
 <app-common-layout [title]="title" [text]="text">
 
-  <ng-container content *ngIf="categoriesList?.length">
+  <ng-container content>
 
     <div class="content-wrapper">
 
-      <div class="icon-and-category-selector"
-           [matMenuTriggerFor]="menu"
-           (menuOpened)="menuOpened = true"
-           (menuClosed)="menuOpened = false"
-      >
+<!--      Could be generalized as a custom component to reuse-->
+      <div class="icon-and-category-selector" [matMenuTriggerFor]="menu" (menuOpened)="menuOpened = true" (menuClosed)="menuOpened = false">
         <div class="name">{{selectedCategory || 'Category'}}</div>
         <mat-icon>{{menuOpened ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</mat-icon>
       </div>
 
       <mat-menu #menu="matMenu" class="material-menu">
-
-
-        <button mat-menu-item class="category-option" *ngFor="let category of categoriesList"
+        <button mat-menu-item class="category-option" *ngFor="let category of (categoriesList | async)"
                 [ngClass]="{'selected': selectedCategory === category}"
                 (click)="selectedCategory = category">
           {{category}}

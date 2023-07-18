@@ -2,6 +2,10 @@ import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output} from '
 import {LocalStorageService} from "../../services/local-storage.service";
 import {Quiz} from "../quiz-page/quiz-page.component";
 
+/*
+* Provides a table for user to review all the past Quiz scores (saved in local storage)
+* as well as capability to navigate to any specific quiz to review in details
+* */
 @Component({
   selector: 'app-previous-scores',
   templateUrl: './previous-scores.component.html',

@@ -1,6 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 
+/*
+* handles common layout for title label and a text
+* all the inputs are optional and the component will display whichever property is provided
+* */
+
 @Component({
   selector: 'app-common-layout',
   templateUrl: './common-layout.component.html',

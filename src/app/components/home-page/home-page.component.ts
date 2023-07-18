@@ -1,6 +1,11 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {TriviaService} from "../../services/trivia.service";
+import {Observable} from "rxjs";
 
+/*
+* Component is responsible for selecting submitting a category to start a quiz
+* Component also provides a capability to go to the previous scores page.
+* */
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -16,7 +21,7 @@ export class HomePageComponent implements OnInit {
 
   selectedCategory = '';
 
-  categoriesList: string[];
+  categoriesList: Observable<string[]>;
   menuOpened = false;
 
   constructor(
@@ -25,7 +30,7 @@ export class HomePageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadCategories()
+    this.categoriesList = this.triviaService.getTheListOfCategories()
   }
   onSubmitCategory(): void {
     this.categorySubmitted.emit(this.selectedCategory)
@@ -33,14 +38,6 @@ export class HomePageComponent implements OnInit {
 
   onViewPrevScores(): void {
     this.goToScores.emit();
-  }
-
-  private loadCategories(): void {
-    this.triviaService.getTheListOfCategories()
-      .subscribe(categories => {
-        this.categoriesList = categories;
-        this.cd.detectChanges();
-      })
   }
 
 }

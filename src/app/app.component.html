@@ -1,4 +1,4 @@
-<ng-container class="wrapper" *ngIf="activeToken">
+<ng-container class="wrapper" *ngIf="activeToken; else NoActiveToken">
 
   <app-home-page
     *ngIf="activePage === ActivePage.Home"
@@ -21,3 +21,8 @@
   ></app-previous-scores>
 
 </ng-container>
+
+<ng-template #NoActiveToken>
+<!--  Placeholder for when the token is not available (or cannot load)-->
+  <app-common-layout title="Loading..."></app-common-layout>
+</ng-template>

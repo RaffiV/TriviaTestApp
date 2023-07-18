@@ -3,6 +3,8 @@ import { map, Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Task } from '../components/quiz-page/quiz-page.component';
 
+
+// Service is responsible for all the communication with trivia api 'https://opentdb.com/api.php'
 @Injectable({
   providedIn: 'root'
 })
@@ -16,12 +18,14 @@ export class TriviaService {
     private httpClient: HttpClient
   ) { }
 
+  // loads a set of questions from trivia api with provided category and amount of questions, and returns a normalized array of Tasks
   loadQuizQuestions(category: string): Observable<Task[]> {
     return this.httpClient.get<any>(
       `${this.searchUrl}?amount=${this.questionsCount}&token=${this.activeToken}&category=${this.categoriesMap.get(category)}`)
       .pipe(map(questionsData => this.normalizeQuestionData(questionsData.results)));
   }
 
+  // Token is generated with this method to make sure that the questions are not repeating.
   generateToken(): Observable<string>{
     return this.httpClient.get<any>(`https://opentdb.com/api_token.php?command=request`)
       .pipe(
@@ -30,6 +34,7 @@ export class TriviaService {
       );
   }
 
+  // the list of categories for questions is loaded here from trivia api
   getTheListOfCategories(): Observable<string[]> {
     if (this.categoriesMap) return of([...this.categoriesMap.keys()])
 
@@ -39,6 +44,9 @@ export class TriviaService {
     )
   }
 
+  /*
+  * normalizes the trivia api provided questions to a Task format to be easily used for our app purposes.
+  * */
   private normalizeQuestionData(questionsData): Task[] {
     return questionsData.map((task, index) => ({
       title: `Question ${index+1}`,
@@ -52,8 +60,11 @@ export class TriviaService {
     }));
   }
 
+  /*
+  * trivia api provided strings include html encoding of certain characters, which are getting decoded with this function.
+  * */
   private htmlDecode(input) {
-    let doc = new DOMParser().parseFromString(input, "text/html");
+    const doc = new DOMParser().parseFromString(input, "text/html");
     return doc.documentElement.textContent;
   }
 }

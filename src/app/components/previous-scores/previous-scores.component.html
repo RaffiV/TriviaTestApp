@@ -2,8 +2,8 @@
 
   <ng-container content>
 
-    <div *ngIf="previousScoresList?.length; else NoPrevScores" class="content-wrapper">
-      <div class="table-wrapper">
+    <div class="content-wrapper">
+      <div *ngIf="previousScoresList?.length; else NoPrevScores" class="table-wrapper">
         <table>
           <thead>
           <tr class="header">

@@ -10,6 +10,7 @@ import {
 import {TriviaService} from "../../services/trivia.service";
 import {LocalStorageService} from "../../services/local-storage.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {first} from "rxjs";
 
 export interface Task {
   title: string;
@@ -25,6 +26,14 @@ export interface Quiz {
   tasks: Task[];
   score: number;
 }
+
+/*
+* Quiz component handles all user interaction with passing or reviewing a previously passed quiz.
+* If a complete quiz is passed through input to the component then it handles review of quiz with buttons "previous", "next",
+* as well as it allows navigation to home page or previous scores page through outputs.
+* If a complete quiz is not provided and a category is provided through input, it loads a new quiz with provided category
+* and initiates the quiz.
+* */
 
 @Component({
   selector: 'app-quiz-page',
@@ -100,15 +109,16 @@ export class QuizPageComponent implements OnInit {
       this.cd.detectChanges();
     }
     else {
-      this.triviaService.loadQuizQuestions(this.category).subscribe(quizTasks => {
-        this.currentQuiz = {
-          category: this.category,
-          tasks: quizTasks,
-          score: 0
-        }
-        this.setLayoutData()
-        this.cd.detectChanges();
-      })
+      this.triviaService.loadQuizQuestions(this.category).pipe(first())
+        .subscribe(quizTasks => {
+          this.currentQuiz = {
+            category: this.category,
+            tasks: quizTasks,
+            score: 0
+          }
+          this.setLayoutData()
+          this.cd.detectChanges();
+        })
     }
   }
 
